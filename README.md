@@ -1,7 +1,7 @@
 # Spring Event Listener
 
 This project uses spring event listener to generate events after some business logic.
-The idea of this project it's for know a lit bit more about this awesome feature of Spring.
+The idea of this project it's to understand a lit bit more about this awesome feature of Spring.
 
 You can know more [here](https://www.baeldung.com/spring-events).
 
