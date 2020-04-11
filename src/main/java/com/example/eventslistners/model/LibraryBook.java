@@ -1,35 +1,48 @@
 package com.example.eventslistners.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Table
 @Entity
-public class PublicationBook extends EntityId<Long>  {
+@Table
+public class LibraryBook extends EntityId<Long> {
 
     @Id
     @GeneratedValue
     @Column
     private Long id;
 
-    @JoinColumn(name = "book_id")
     @ManyToOne
+    @JoinColumn(name = "library_id")
+    private Library library;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
     private Book book;
 
     @Column
-    private LocalDate publicationDate;
+    private LocalDateTime createdAt;
 
     @Column
     private LocalDateTime lastUpdate;
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
     }
 
     public Book getBook() {
@@ -40,22 +53,29 @@ public class PublicationBook extends EntityId<Long>  {
         this.book = book;
     }
 
-    public LocalDate getPublicationDate() {
-        return publicationDate;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setPublicationDate(LocalDate publicationDate) {
-        this.publicationDate = publicationDate;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
+    @Override
     public LocalDateTime getLastUpdate() {
         return lastUpdate;
+    }
+
+    @Override
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     @Override
     @PrePersist
     public void preSave() {
         this.lastUpdate = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     @Override
@@ -64,15 +84,11 @@ public class PublicationBook extends EntityId<Long>  {
         this.lastUpdate = LocalDateTime.now();
     }
 
-    public void setLastUpdate(LocalDateTime lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PublicationBook that = (PublicationBook) o;
+        LibraryBook that = (LibraryBook) o;
         return id.equals(that.id);
     }
 

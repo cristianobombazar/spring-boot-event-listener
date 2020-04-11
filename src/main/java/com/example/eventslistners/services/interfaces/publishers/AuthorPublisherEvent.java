@@ -1,4 +1,4 @@
-package com.example.eventslistners.services.interfaces;
+package com.example.eventslistners.services.interfaces.publishers;
 
 import com.example.eventslistners.model.Author;
 

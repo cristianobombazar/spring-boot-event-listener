@@ -1,55 +1,50 @@
 package com.example.eventslistners.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Table
 @Entity
-public class PublicationBook extends EntityId<Long>  {
+@Table
+public class Library extends EntityId<Long> {
 
     @Id
     @GeneratedValue
     @Column
     private Long id;
 
-    @JoinColumn(name = "book_id")
-    @ManyToOne
-    private Book book;
-
     @Column
-    private LocalDate publicationDate;
+    @NotNull
+    private String name;
 
     @Column
     private LocalDateTime lastUpdate;
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Book getBook() {
-        return book;
+    public String getName() {
+        return name;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
-    public LocalDate getPublicationDate() {
-        return publicationDate;
-    }
-
-    public void setPublicationDate(LocalDate publicationDate) {
-        this.publicationDate = publicationDate;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDateTime getLastUpdate() {
         return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdated) {
+        this.lastUpdate = lastUpdated;
     }
 
     @Override
@@ -64,16 +59,12 @@ public class PublicationBook extends EntityId<Long>  {
         this.lastUpdate = LocalDateTime.now();
     }
 
-    public void setLastUpdate(LocalDateTime lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PublicationBook that = (PublicationBook) o;
-        return id.equals(that.id);
+        Library library = (Library) o;
+        return id.equals(library.id);
     }
 
     @Override

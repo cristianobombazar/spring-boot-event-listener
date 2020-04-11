@@ -1,4 +1,4 @@
-package com.example.eventslistners.events.listeners;
+package com.example.eventslistners.events.listeners.core;
 
 import com.example.eventslistners.enuns.EventType;
 import com.example.eventslistners.model.EventHistory;

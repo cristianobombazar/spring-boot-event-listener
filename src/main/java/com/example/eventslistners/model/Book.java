@@ -82,11 +82,13 @@ public class Book extends EntityId<Long> {
     }
 
     @Override
+    @PrePersist
     public void preSave() {
         this.lastUpdate = LocalDateTime.now();
     }
 
     @Override
+    @PreUpdate
     public void preUpdate() {
         this.lastUpdate = LocalDateTime.now();
     }

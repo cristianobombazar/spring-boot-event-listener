@@ -5,18 +5,18 @@ import com.example.eventslistners.enuns.EventType;
 public class GenericApplicationEvent<E> implements GenericEvent  {
 
     private final EventType eventType;
-    private final E object;
+    private final E value;
 
-    public GenericApplicationEvent(EventType eventType, E object) {
+    public GenericApplicationEvent(EventType eventType, E value) {
         this.eventType = eventType;
-        this.object = object;
+        this.value = value;
     }
 
     public EventType getEventType() {
         return eventType;
     }
 
-    E getObject() {
-        return object;
+    public E getValue() {
+        return value;
     }
 }

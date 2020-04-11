@@ -4,6 +4,7 @@ import com.example.eventslistners.model.Book;
 import com.example.eventslistners.services.interfaces.BookService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RestController
@@ -18,7 +19,7 @@ public class BookResource {
 
     @GetMapping("/{id}")
     public Book findById(@PathVariable Long id) {
-        return bookService.findById(id);
+        return bookService.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
     @PostMapping

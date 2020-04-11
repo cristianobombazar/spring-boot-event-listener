@@ -8,8 +8,4 @@ public class AuthorUpdatedEvent extends GenericApplicationEvent<Author> {
     public AuthorUpdatedEvent(Author author) {
         super(EventType.AUTHOR_UPDATED, author);
     }
-
-    public Author getAuthor() {
-        return getObject();
-    }
 }

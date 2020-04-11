@@ -9,20 +9,27 @@ spring:
   output:
     ansi:
       enabled: always
-  datasource:
-    url: jdbc:postgresql://localhost:5432/eventlistener
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
         temp:
           use_jdbc_metadata_defaults: false
     hibernate:
       ddl-auto: update
     generate-ddl: true
-  main:
-    lazy-initialization: false
+  thymeleaf:
+    cache: false
+    mode: HTML
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USER}
+    password: ${EMAIL_PASSWORD}
+    protocol: smtp
+    tls: true
+    auth: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
 

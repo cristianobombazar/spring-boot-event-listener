@@ -6,9 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Objects;
 
-public class ObjectMapperUtil {
+public final class ObjectMapperUtil {
 
-    public static final String toString(Object object) {
+    public static String toString(Object object) {
         if (Objects.nonNull(object)) {
             try {
                 return getInstance().writeValueAsString(object);

@@ -3,11 +3,12 @@ package com.example.eventslistners.services;
 import com.example.eventslistners.exceptions.EmailAlreadyExistsException;
 import com.example.eventslistners.model.Author;
 import com.example.eventslistners.repository.AuthorRepository;
-import com.example.eventslistners.services.interfaces.AuthorPublisherEvent;
+import com.example.eventslistners.services.interfaces.publishers.AuthorPublisherEvent;
 import com.example.eventslistners.services.interfaces.AuthorService;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -41,7 +42,12 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author findById(Long id) {
-        return repository.findById(id).orElseThrow(EntityNotFoundException::new);
+    public Optional<Author> findById(Long id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public Author getById(Long id) {
+        return findById(id).orElse(null);
     }
 }
